@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>iFresh - Trình tạo thực đơn</title>
+        <link rel="icon" href="{{ url_for('static', filename='assets/img/logo/favicon.ico') }}" type="image/x-icon">
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='templates/common-styles.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ template_folder }}/styles.css" type="text/css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <!-- <header>
+            <h1>Your Website Header</h1>
+        </header> -->
+        <main>
+            <!-- <h2>Welcome to Your Website</h2> -->
+
+            <div id="header-container">
+                <div class="header">
+                    <div class="text">Trình tạo thực đơn</div>
+                    <svg width="15" height="15" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10.0278" cy="10.0278" r="9.02777" stroke="white" stroke-width="2"/>
+                        <path d="M9.02715 13.2447V13.1744C9.03472 12.4284 9.11052 11.8347 9.25453 11.3934C9.39854 10.952 9.60319 10.5946 9.86848 10.3212C10.1338 10.0478 10.4521 9.79591 10.8235 9.56547C11.0471 9.42487 11.248 9.25888 11.4261 9.06749C11.6042 8.87221 11.7444 8.64763 11.8467 8.39376C11.9529 8.13989 12.0059 7.85867 12.0059 7.55012C12.0059 7.16736 11.9188 6.83537 11.7444 6.55416C11.5701 6.27295 11.337 6.05618 11.0452 5.90386C10.7534 5.75153 10.4294 5.67537 10.0731 5.67537C9.76236 5.67537 9.46297 5.74177 9.17495 5.87457C8.88692 6.00736 8.64627 6.21632 8.45299 6.50143C8.25971 6.78655 8.14792 7.15955 8.1176 7.62042H6.68506C6.71538 6.95645 6.88213 6.38817 7.18531 5.91558C7.49228 5.44298 7.89589 5.0817 8.39615 4.83174C8.90019 4.58177 9.45918 4.45679 10.0731 4.45679C10.7401 4.45679 11.32 4.59349 11.8126 4.86689C12.3091 5.14029 12.6919 5.51524 12.9609 5.99174C13.2338 6.46824 13.3702 7.01113 13.3702 7.62042C13.3702 8.05005 13.3058 8.43867 13.177 8.78628C13.0519 9.13389 12.87 9.4444 12.6312 9.7178C12.3963 9.9912 12.112 10.2334 11.7785 10.4443C11.445 10.6591 11.1778 10.8856 10.977 11.1239C10.7761 11.3582 10.6302 11.6375 10.5393 11.9616C10.4483 12.2858 10.399 12.6901 10.3915 13.1744V13.2447H9.02715ZM9.75478 16.713C9.47434 16.713 9.23369 16.6094 9.03283 16.4024C8.83197 16.1954 8.73154 15.9474 8.73154 15.6584C8.73154 15.3694 8.83197 15.1214 9.03283 14.9144C9.23369 14.7074 9.47434 14.6039 9.75478 14.6039C10.0352 14.6039 10.2759 14.7074 10.4767 14.9144C10.6776 15.1214 10.778 15.3694 10.778 15.6584C10.778 15.8498 10.7307 16.0255 10.6359 16.1857C10.545 16.3458 10.4218 16.4747 10.2664 16.5723C10.1148 16.6661 9.94427 16.713 9.75478 16.713Z" fill="white"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div id="body-container">
+                <div id="instruction">
+                    Chọn (các) món bất kỳ và đợi
+                    <span style="font-weight: bold;">
+                        TRÌNH TẠO THỰC ĐƠN iFresh
+                    </span>
+                    tạo công thức đặc biệt dành riêng cho bạn
+                </div>
+                <div id="add-icon">
+                    <img src="{{ url_for('static', filename='assets/img/icons/add-items.png') }}" onclick="window.location.href = '/menu/generate'">
+                </div>
+                <div id="recent-items">
+                    <hr>
+                    <div class="header">GẦN ĐÂY</div>
+                    <div class="dishes">
+                        {% for dish in recent_dishes %}
+                        <div class="dish">
+                            <div class="header">{{ dish['name'] }}</div>
+                            <div class="contents">Nguyên liệu: {{ dish['ingredients'] }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="nav-pages">
+                <div class="page" id="home-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/home-active.png') }}">
+                </div>
+                <div class="page" id="scan-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/scanner-active.png') }}">
+                </div>
+                <div class="page" id="menu-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/menu-active.png') }}">
+                </div>
+                <div class="page" id="explore-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/explore-active.png') }}">
+                </div>
+            </div>
+
+        </main>
+        <!-- <footer>
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </footer> -->
+
+
+
+
+        <img src="{{ url_for('static', filename='assets/img/icons/loading-icon.gif') }}" id="loading-icon">
+
+
+        <script src="{{ url_for('static', filename='templates/common-script.js') }}"></script>
+        <script></script>
+        <script src="{{ template_folder }}/script.js"></script>
+    </body>
+</html>

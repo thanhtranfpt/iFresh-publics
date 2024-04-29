@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>iFresh - Khám phá</title>
+        <link rel="icon" href="{{ url_for('static', filename='assets/img/logo/favicon.ico') }}" type="image/x-icon">
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='templates/common-styles.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ template_folder }}/styles.css" type="text/css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <!-- <header>
+            <h1>Your Website Header</h1>
+        </header> -->
+        <main>
+            <!-- <h2>Welcome to Your Website</h2> -->
+
+            <div id="back-container" onclick="window.location.href = '/explore'" style="cursor: pointer;">
+                <div class="icon">
+                    <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16.7072L2 9.70715" stroke="#E96200" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M2 9L12 2" stroke="#E96200" stroke-width="3" stroke-linecap="round"/>
+                    </svg>                        
+                </div>
+                <div class="text">Khám phá</div>
+            </div>
+
+            <div id="search-bar">
+                <div class="icon">
+                    <img src="{{ url_for('static', filename='assets/img/icons/search.png') }}">
+                </div>
+                <div class="text">
+                    <input type="text" id="search-input" placeholder="Bạn muốn mua gì...">
+                </div>
+            </div>
+
+            <div id="results">
+                {% if show_results %}
+                <div class="advice">
+                    {{ results['advice'] | safe }}
+                </div>
+                <div class="recommended-items">
+                    <!-- FOR EACH ITEM IN ITEMS. -->
+                    {% for item in results['recommended_items'] %}
+                    <div class="item" onclick="window.open(`{{ item['link'] }}`, '_blank')" style="cursor: pointer;">
+                        <div class="item-info">
+                            <div class="item-img">
+                                <img src="{{ item['image'] }}">
+                            </div>
+                            <div class="item-details">
+                                <div class="item-ratings">
+                                    <div class="item-likes">
+                                        <div class="like-icon">
+                                            <img src="{{ url_for('static', filename='assets/img/icons/ratings-heart.png') }}">
+                                        </div>
+                                        <div class="num-likes">
+                                            {{ item['ratings']['likes'] }}
+                                        </div>
+                                    </div>
+                                    <div class="item-comments">
+                                        <div class="comment-icon">
+                                            <img src="{{ url_for('static', filename='assets/img/icons/ratings-comment.png') }}">
+                                        </div>
+                                        <div class="num-comments">
+                                            {{ item['ratings']['comments'] }}
+                                        </div>
+                                    </div>
+                                    <div class="item-flags">
+                                        <div class="flag-icon">
+                                            <img src="{{ url_for('static', filename='assets/img/icons/ratings-flag.png') }}">
+                                        </div>
+                                        <div class="num-flags">
+                                            {{ item['ratings']['flags'] }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-source">
+                                    <img src="{{ url_for('static', filename='assets/img/icons') }}/{{ item['source'] }}.png">
+                                </div>
+
+                                <div class="item-price">
+                                    {{ item['price'] }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-title">
+                            {{ item['title'] }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- END FOR EACH ITEM IN ITEMS. -->
+                </div>
+                {% endif %}
+            </div>
+
+            <div id="nav-pages">
+                <div class="page" id="home-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/home-active.png') }}">
+                </div>
+                <div class="page" id="scan-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/scanner-active.png') }}">
+                </div>
+                <div class="page" id="menu-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/menu-active.png') }}">
+                </div>
+                <div class="page" id="explore-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/explore-active.png') }}">
+                </div>
+            </div>
+
+        </main>
+        <!-- <footer>
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </footer> -->
+
+
+
+
+        <img src="{{ url_for('static', filename='assets/img/icons/loading-icon.gif') }}" id="loading-icon">
+
+
+        <script src="{{ url_for('static', filename='templates/common-script.js') }}"></script>
+        <script>
+            const showResults = {{ show_results | lower }};
+            const searchQuery = "{{ search_query }}";
+        </script>
+        <script src="{{ template_folder }}/script.js"></script>
+    </body>
+</html>

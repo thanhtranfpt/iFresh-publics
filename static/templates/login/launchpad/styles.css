@@ -1,0 +1,224 @@
+#main-container {
+    position: fixed;
+    top: 0;
+    bottom: calc(161/932 * 100vh);
+    width: 100%;
+    overflow-y: auto;
+    background-color: #c8ece4;
+    border-radius: 0 0 30px 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* x-offset y-offset blur spread color */
+}
+
+#main-container > .dan-chuyen {
+    position: relative;
+    margin-top: calc(62/932 * 100vh);
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#main-container > .dan-chuyen > img {
+    position: relative;
+    height: 32vh;
+    width: auto;
+    object-fit: contain;
+    transform: translateX(23.5px);
+}
+
+#main-container > .dan-chuyen > .text {
+    position: relative;
+    width: calc(297/430 * 100vw);
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 300;
+    font-size: 16px;
+    color: black;
+}
+
+#main-container > #login {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login > .button {
+    position: relative;
+    height: 50px;
+    margin-bottom: 28px;
+    width: 330px;
+    max-width: calc(330/430 * 100vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* x-offset y-offset blur spread color */
+}
+
+#login > .button > img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+#login > .iFresh {
+    position: relative;
+    color: white;
+    background-color: #24b060; /* #249c5c */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#login > .iFresh > div {
+    position: relative;
+    margin-left: 20px;
+    height: 60%;
+}
+
+#login > .iFresh > div > img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+#login > .iFresh > .text {
+    position: relative;
+    flex-grow: 1;
+    margin-right: 40px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+#login > .facebook {
+    background-color: #3073b9;
+}
+
+#login > .google {
+    background-color: white;
+}
+
+#main-container > #terms {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 7px;
+    width: 140px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+    cursor: pointer;
+}
+
+#logo {
+    position: fixed;
+    bottom: 0;
+    height: calc(161/932 * 100vh);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo > img {
+    height: calc(133/161 * 100%);
+    width: auto;
+    max-width: 100%;
+}
+
+
+
+
+#layer-2 {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#layer-2 > .terms {
+    position: absolute;
+    width: calc(376/430 * 100vw);
+    height: calc(827/932 * 100vh);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 22px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* x-offset y-offset blur spread color */
+
+    display: flex;
+    flex-direction: column;
+}
+
+#layer-2 > .terms > .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: calc(39/430 * 100vw);
+    max-width: 39px;
+    height: calc(39/430 * 100vw);
+    max-height: 39px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.close-btn img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+#layer-2 > .terms > .header {
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: calc(70/430 * 100vw);
+    margin-right: calc(70/430 * 100vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 24px;
+    color: black;
+}
+
+#layer-2 > .terms > .contents {
+    position: relative;
+    margin-left: calc(21/430 * 100vw);
+    margin-right: calc(21/430 * 100vw);
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+#layer-2 > .terms > .contents > .wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}

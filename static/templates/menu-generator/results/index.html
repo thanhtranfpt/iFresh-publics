@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>iFresh - Trình tạo thực đơn</title>
+        <link rel="icon" href="{{ url_for('static', filename='assets/img/logo/favicon.ico') }}" type="image/x-icon">
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='templates/common-styles.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ template_folder }}/styles.css" type="text/css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <!-- <header>
+            <h1>Your Website Header</h1>
+        </header> -->
+        <main>
+            <!-- <h2>Welcome to Your Website</h2> -->
+
+            <div id="back-container" style="cursor: pointer;" onclick="window.location.href = '/menu/generate'">
+                <div class="icon">
+                    <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16.7072L2 9.70715" stroke="#E96200" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M2 9L12 2" stroke="#E96200" stroke-width="3" stroke-linecap="round"/>
+                    </svg>                        
+                </div>
+                <div class="text">Chọn món</div>
+            </div>
+
+            <div id="header-container">
+                <div id="results-title">{{ dish['name'] }}</div>
+                <div id="background-img">
+                    <img src="{{ url_for('static', filename='assets/img/backgrounds/fresh-stone-op25-crop.png') }}">
+                </div>
+                <div id="cover-img">
+                    <img src="{{ dish['image'] }}">
+                </div>
+                <div id="result-tabs">
+                    <div id="guidance-tab" class="result-tab selected" onclick="chooseTab('guidance')">Công thức</div>
+                    <div id="shopping-tab" class="result-tab" onclick="chooseTab('shopping')">Nguyên liệu</div>
+                </div>
+            </div>
+
+            <div id="wrapper-guidance">
+                <div id="guidance">
+                    {{ guidance | safe}}
+                </div>
+            </div>
+
+
+
+            <div id="shopping-container" style="display: none;">
+                <!-- FOR EACH PRODUCT IN PRODUCTS -->
+                {% for product in shopping['products'] %}
+                <div class="product">
+                    <div class="description">
+                        {{ product['description'] | safe}}
+                    </div>
+                    <div class="product-info">
+                        <img src="{{ product['image'] }}">
+
+                        <div class="more-info-btn" onclick="showRecommendedItems(`{{ product['id'] }}`)">
+                            <span>{{ product['name'] }}</span>
+                            <span>Bấm để biết thêm thông tin</span>
+                        </div>
+                    </div>
+
+                    <div class="recommended-items" id="recommended-items-{{ product['id'] }}" style="display: none;">
+                        <!-- FOR EACH ITEM RECOMMENDED -->
+                        {% for item in product['recommended_items'] %}
+                        <div class="item-recommended" onclick="window.open(`{{ item['link'] }}`, '_blank')" style="cursor: pointer;">
+                            <div class="item-info">
+                                <div class="item-img">
+                                    <img src="{{ item['image'] }}">
+                                </div>
+                                <div class="item-details">
+                                    <div class="item-ratings">
+                                        <div class="item-likes">
+                                            <div class="like-icon">
+                                                <img src="{{ url_for('static', filename='assets/img/icons/ratings-heart.png') }}">
+                                            </div>
+                                            <div class="num-likes">
+                                                {{ item['ratings']['likes'] }}
+                                            </div>
+                                        </div>
+                                        <div class="item-comments">
+                                            <div class="comment-icon">
+                                                <img src="{{ url_for('static', filename='assets/img/icons/ratings-comment.png') }}">
+                                            </div>
+                                            <div class="num-comments">
+                                                {{ item['ratings']['comments'] }}
+                                            </div>
+                                        </div>
+                                        <div class="item-flags">
+                                            <div class="flag-icon">
+                                                <img src="{{ url_for('static', filename='assets/img/icons/ratings-flag.png') }}">
+                                            </div>
+                                            <div class="num-flags">
+                                                {{ item['ratings']['flags'] }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-source">
+                                        <img src="{{ url_for('static', filename='assets/img/icons') }}/{{ item['source'] }}.png">
+                                    </div>
+
+                                    <div class="item-price">
+                                        {{ item['price'] }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-title">
+                                {{ item['title'] }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- END OF FOR EACH ITEM RECOMMENDED. -->
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- END OF FOR EACH PRODUCT IN PRODUCTS. -->
+            </div>
+
+
+
+            <div id="nav-pages">
+                <div class="page" id="home-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/home-active.png') }}">
+                </div>
+                <div class="page" id="scan-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/scanner-active.png') }}">
+                </div>
+                <div class="page" id="menu-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/menu-active.png') }}">
+                </div>
+                <div class="page" id="explore-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/explore-active.png') }}">
+                </div>
+            </div>
+
+        </main>
+        <!-- <footer>
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </footer> -->
+
+
+
+
+        <img src="{{ url_for('static', filename='assets/img/icons/loading-icon.gif') }}" id="loading-icon">
+
+
+        <script src="{{ url_for('static', filename='templates/common-script.js') }}"></script>
+        <script></script>
+        <script src="{{ template_folder }}/script.js"></script>
+    </body>
+</html>

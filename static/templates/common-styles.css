@@ -1,0 +1,55 @@
+/* Include Thabit font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Thabit');
+
+
+:root {
+    --header-height: 10vh;
+    --footer-height: 10vh;
+}
+
+body {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#loading-icon {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 80px;
+    height: auto;
+}
+
+
+#nav-pages {
+    position: fixed;
+    height: var(--footer-height);
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* x-offset y-offset blur spread color */
+}
+
+#nav-pages > .page {
+    position: relative;
+    width: calc(100% / 4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#nav-pages > .page > img {
+    height: 45%;
+    width: auto;
+    max-width: 80%;
+    object-fit: contain;
+}

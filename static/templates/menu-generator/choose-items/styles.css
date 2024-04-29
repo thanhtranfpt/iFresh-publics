@@ -1,0 +1,392 @@
+hr {
+    margin: 0;
+}
+
+.items-separated-line {
+    width: 91%;
+    transform: translateX(4.5%);
+    border: none;
+    border-top: 2px solid #e9e9e9;
+}
+
+#end-fridge-line {
+    margin-top: 14px;
+    width: 91%;
+    transform: translateX(4.5%);
+    border: none;
+    border-top: 2px solid #8D8D8D;
+}
+
+
+#back-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: var(--header-height);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    /* background-color: white; */
+    z-index: 9999999999;
+}
+
+#back-container > .icon {
+    position: relative;
+    margin-left: 25px;
+    width: 10px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+/* #back-icon img {
+    width: 100%;
+} */
+
+#back-container > .text {
+    position: relative;
+    margin-left: 15px;
+    display: flex;
+    color: #E96200;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#fridge-container {
+    position: relative;
+    margin-top: 88px;
+    margin-left: 4%;
+    padding-top: 11px;
+    padding-bottom: 30px;
+    width: 92%;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* x-offset y-offset blur spread color */
+    /* width = 395, left = 17 */
+}
+
+#fridge-header {
+    position: relative;
+    margin-left: 4.5%;
+    margin-top: 11px;
+    /* margin-bottom: 23.5px; */
+    width: 90%;
+    height: 58.5px;
+    display: flex;
+    flex-direction: row;
+    /* width: 355.5 */
+}
+
+#your-fridge-text {
+    margin-left: 0;
+    width: 58%;
+    display: flex;
+    align-items: flex-start;
+    font-weight: bold;
+    font-size: 26px;
+    color: black;
+    letter-spacing: -0.05em;
+}
+
+#wrapper-choose-all-checkbox {
+    display: flex;
+    align-items: center;
+    margin-left: 8.5%;
+    width: 32px;
+}
+
+#choose-all-checkbox {
+    display: flex;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+#choose-all-text {
+    margin-left: calc(1.5% - 5px);
+    width: 24%;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
+}
+
+#fridge-items {
+    overflow-y: auto;
+    height: 266px;
+    justify-content: center;
+}
+
+.item-in-fridge-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.item-in-fridge {
+    position: relative;
+    margin-top: 2px;
+    margin-left: 15px;
+    margin-bottom: 2px;
+    width: 92%;
+    height: 61px;
+    display: flex;
+    flex-direction: row;
+    display: inline-flex;
+}
+
+.selected {
+    background-color: rgba(101, 201, 168, 0.4); /* Màu 65C9A8 với độ trong suốt 40% */;
+    border-radius: 15px;
+}
+
+.item-img {
+    position: relative;
+    margin-left: 0;
+    margin-right: 5px;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-img img {
+    width: 100%;
+    height: auto;
+    max-height: 75px;
+}
+
+.item-text {
+    position: relative;
+    margin-left: 0;
+    width: 56%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.item-name {
+    font-weight: 500;
+    font-size: 16px;
+    color: black;
+}
+
+.item-weight {
+    margin-top: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #878787;
+}
+
+.item-days-left {
+    position: relative;
+    margin-left: 3%;
+    width: 11%;
+}
+
+.days-left-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.days-left-img img {
+    width: 50px;
+    height: auto;
+    max-height: 100%;
+}
+
+.days-left-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.days-left-text .num-days-left {
+    display: block;
+    font-size: 12px;
+    color: #636363;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.days-left-text .unit-num-left {
+    display: block;
+    margin-top: 3px;
+    font-size: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #636363;
+}
+
+#selected-container {
+    margin-top: 30px;
+    margin-left: 4%;
+    margin-bottom: calc(var(--footer-height) + 30px);
+    width: 92%;
+    height: 308px;
+    position: relative;
+    padding-bottom: 20px;
+    padding-top: 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* x-offset y-offset blur spread color */
+    /* width = 395, left = 17 */
+}
+
+#selected-header {
+    position: relative;
+    margin-left: 6%;
+    width: 88%;
+    height: 51px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+#selected-text {
+    position: relative;
+    margin-left: 0;
+    width: 58%;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#wrapper-delete-all-checkbox {
+    margin-left: 10%;
+    width: 32px;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 5px;
+}
+
+#delete-all-checkbox {
+    display: flex;
+    position: relative;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+#delete-all-text {
+    position: relative;
+    margin-left: calc(1.5% - 5px);
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 10px;
+}
+
+#selected-items {
+    overflow-y: auto;
+    height: 150px;
+    justify-content: center;
+}
+
+.item-selected-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.item-selected {
+    position: relative;
+    margin-top: 2px;
+    margin-left: 15px;
+    margin-bottom: 2px;
+    width: 92%;
+    height: 61px;
+    display: flex;
+    flex-direction: row;
+}
+
+.amount-selected {
+    position: relative;
+    margin-left: 0;
+    width: 14%;
+    display: flex;
+    align-items: center;
+
+    font-weight: 500;
+    font-size: 20px;
+}
+
+#generate-commands {
+    margin-top: 60px;
+}
+
+#request-btn {
+    position: absolute;
+    left: 8%;
+    width: 38%;
+    height: 31px;
+    border-radius: 29px;
+    background-color: #65C9A8;
+    border: none;
+
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    color: #000000;
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+#generate-btn {
+    position: absolute;
+    right: 8%;
+    width: 38%;
+    height: 31px;
+    border-radius: 29px;
+    background-color: #BBFFE9;
+    border: none;
+
+    font-weight: bold;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: #000000;
+
+    cursor: pointer;
+}
+
+
+
+/* Hiển thị trên máy tính */
+@media only screen and (min-width: 768px) {
+    #fridge-items {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .item-in-fridge-container {
+        margin-left: 40px;
+    }
+
+    .item-in-fridge {
+        width: 385px;
+    }
+
+
+    #selected-items {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .item-selected-container {
+        margin-left: 40px;
+    }
+
+    .item-selected {
+        width: 385px;
+    }
+}

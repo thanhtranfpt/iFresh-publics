@@ -1,0 +1,140 @@
+hr {
+    margin: 0;
+    padding: 0;
+}
+
+#header-container {
+    position: relative;
+    background-color: #5BBA9B;
+    width: 100%;
+    height: var(--header-height);
+    border-radius: 0 0 15px 15px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+}
+
+#header-container > .header {
+    position: absolute;
+    left: 4vw;
+    bottom: 14px;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#header-container > .header > .text {
+    position: relative;
+    width: 236px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* font-family: 'Thabit', sans-serif; */
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+}
+
+#header-container > .header > svg {
+    position: relative;
+    margin-left: 17px;
+    cursor: pointer;
+}
+
+#body-container {
+    position: relative;
+    margin-bottom: var(--footer-height);
+    height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+#instruction {
+    position: relative;
+    top: 35px;
+    left: 12vw;
+    width: 58vw;
+    font-weight: 500;
+    font-size: 24px;
+    color: #8D8D8D;
+}
+
+#add-icon {
+    position: absolute;
+    bottom: calc(20vh + 10px + 3.1vh);
+    width: 76px;
+    height: 76px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+#add-icon > img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+#recent-items {
+    position: absolute;
+    bottom: 0;
+    height: calc(20vh + 10px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#recent-items > hr {
+    width: calc(100vw - 7vw - 9.5vw);
+    transform: translateX(7vw);
+}
+
+#recent-items > .header {
+    position: relative;
+    margin-top: 10px;
+    margin-left: 7.3vw;
+    margin-right: 7.5vw;
+    height: 28px;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 24px;
+    color: #CBCACA;
+}
+
+#recent-items > .dishes {
+    position: relative;
+    margin-top: 13px;
+    margin-bottom: 10px;
+    margin-left: 7.3vw;
+    margin-right: 9.6vw;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+#recent-items > .dishes > .dish {
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#recent-items > .dishes > .dish > .header {
+    position: relative;
+    font-weight: bold;
+    font-style: italic;
+    color: #8D8D8D;
+    font-size: 20px;
+}
+
+#recent-items > .dishes > .dish > .contents {
+    position: relative;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 14px;
+    color: #8D8D8D;
+}

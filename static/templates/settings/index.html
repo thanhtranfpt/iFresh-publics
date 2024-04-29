@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>iFresh - Cài đặt</title>
+        <link rel="icon" href="{{ url_for('static', filename='assets/img/logo/favicon.ico') }}" type="image/x-icon">
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='templates/common-styles.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ template_folder }}/styles.css" type="text/css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <!-- <header>
+            <h1>Your Website Header</h1>
+        </header> -->
+        <main>
+            <!-- <h2>Welcome to Your Website</h2> -->
+
+            <div id="back-container" style="cursor: pointer;" onclick="window.location.href = '/'">
+                <div class="icon">
+                    <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16.7072L2 9.70715" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M2 9L12 2" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                        </svg>                        
+                </div>
+                <div class="text">Trang chủ</div>
+            </div>
+
+            <div id="header-container">
+                <div id="user-avatar">
+                    <img src="{{ user['avatar'] }}" id="user-avatar-image">
+                </div>
+                <div class="camera-icon">
+                    <img src="{{ url_for('static', filename='assets/img/icons/camera.png') }}">
+                    <input type="file" accept="image/*" id="avatar-image-input" onchange="handleAvatarImageUpload(event)">
+                </div>
+                <div id="user-name">
+                    <div class="edit-icon" onclick="changeName()" style="cursor: pointer;">
+                        <img src="{{ url_for('static', filename='assets/img/icons/edit.png') }}">
+                    </div>
+                    <div class="text" id="user-name-text">{{ user['first_name'] }} {{ user['last_name'] }}</div>
+                    <div class="supporter"></div>
+                </div>
+                <div class="tabs" id="tabs-header">
+                    <div class="tab selected" id="user-account-tab" onclick="chooseTab('user-account')">Tài khoản</div>
+                    <div class="tab" id="app-configs-tab" onclick="chooseTab('app-configs')">Cài đặt</div>
+                </div>
+            </div>
+
+            <div id="body-container">
+                <div id="app-configs" style="display: none;">
+                    <!-- FOR EACH config in configs -->
+                    <div class="config" onclick="changeLanguage()">
+                        <div class="icon">
+                            <img src="{{ url_for('static', filename='assets/img/icons/earth-grey.png') }}">
+                        </div>
+                        <div class="text">
+                            <div class="title">Ngôn ngữ</div>
+                            <div class="sub-title"></div>
+                        </div>
+                        <div class="action">
+                            <!-- <div class="button"></div> -->
+                            <!-- <div class="text">Tiếng Việt (mặc định)</div> -->
+                            <div class="text">{{ app['language'] }}</div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- END FOR EACH config. -->
+
+                    <div class="config" onclick="rateUs()">
+                        <div class="icon">
+                            <img src="{{ url_for('static', filename='assets/img/icons/star.png') }}">
+                        </div>
+                        <div class="text">
+                            <div class="title">Đánh giá chúng tôi</div>
+                            <div class="sub-title"></div>
+                        </div>
+                        <div class="action">
+                            <!-- <div class="button"></div> -->
+                            <!-- <div class="text"></div> -->
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="config" onclick="window.open('tel:+84389086735', '_blank')">
+                        <div class="icon">
+                            <img src="{{ url_for('static', filename='assets/img/icons/phone.png') }}">
+                        </div>
+                        <div class="text">
+                            <div class="title">Liên hệ</div>
+                            <div class="sub-title"></div>
+                        </div>
+                        <div class="action">
+                            <!-- <div class="button"></div> -->
+                            <!-- <div class="text"></div> -->
+                        </div>
+                    </div>
+                    <hr>
+
+
+                    <div class="others">
+                        <div class="button left" onclick="window.open(`https://springsuccess.onrender.com/`, '_blank')">Liên kết</div>
+                        <div class="button right" onclick="window.location.href = '/log-out'">Đăng xuất</div>
+                    </div>
+
+
+                </div>
+                <div id="user-account">
+                    <!-- FOR EACH config in configs -->
+                    <div class="config" onclick="updatePassword()">
+                        <div class="text">
+                            <div class="title">Mật khẩu</div>
+                            <div class="sub-title">lần update cuối : {{ user['password_last_updated_date'] }}</div>
+                        </div>
+                        <div class="action">
+                            <div class="button">UPDATE</div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- END FOR EACH config. -->
+
+                    <div class="config" onclick="shareFamily()">
+                        <div class="text">
+                            <div class="title">Family Share</div>
+                            <div class="sub-title"></div>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="config" onclick="deleteAccount()">
+                        <div class="text">
+                            <div class="title">Xóa tài khoản</div>
+                            <div class="sub-title"></div>
+                        </div>
+                        <!-- <div class="action">
+                            <div class="button"></div>
+                        </div> -->
+                    </div>
+                    <hr>
+
+                    <div class="config" onclick="window.location.href = '/plans'">
+                        <div class="text">
+                            <div class="title">Đăng ký tài khoản</div>
+                            <div class="sub-title"></div>
+                        </div>
+                        <!-- <div class="action">
+                            <div class="button"></div>
+                        </div> -->
+                    </div>
+                    <hr>
+
+                </div>
+            </div>
+
+            <div id="nav-pages">
+                <div class="page" id="home-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/home-active.png') }}">
+                </div>
+                <div class="page" id="scan-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/scanner-active.png') }}">
+                </div>
+                <div class="page" id="menu-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/menu-active.png') }}">
+                </div>
+                <div class="page" id="explore-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/explore-active.png') }}">
+                </div>
+            </div>
+
+
+
+            <div id="layer-2" style="display: none;">
+                <div id="health-conditions-wrapper">
+                    <div class="close-btn" onclick="closeLayer2()" id="layer-2-close-btn">
+                        <img src="{{ url_for('static', filename='assets/img/icons/close.JPG') }}">
+                    </div>
+                    <div class="header">Cập nhật tình trạng sức khỏe hiện tại của bạn: </div>
+                    <div id="health-conditions">
+                        <div class="item">
+                            <label class="container">Tốt
+                                <input type="checkbox" id="good-health-condition" placeholder="Tốt">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+    
+                        <div class="item">
+                            <label class="container">Bình thường
+                                <input type="checkbox" id="normal-health-condition" placeholder="Bình thường">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+    
+                        <div class="item">
+                            <label class="container">Tim mạch
+                                <input type="checkbox" id="tim-mach-health-condition" placeholder="Tim mạch">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+    
+                        <div class="item">
+                            <label class="container">Tiểu đường
+                                <input type="checkbox" id="tieu-duong-health-condition" placeholder="Tiểu đường">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+    
+                        <div class="item">
+                            <label class="container">Cao huyết áp
+                                <input type="checkbox" id="cao-huyet-ap-health-condition" placeholder="Cao huyết áp">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+    
+                        <div class="item">
+                            <label class="container">Gan nhiễm mỡ
+                                <input type="checkbox" id="gan-nhiem-mo-health-condition" placeholder="Gan nhiễm mỡ">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+    
+                        <div class="item">
+                            <label class="container">Thoái hóa đốt sống cổ
+                                <input type="checkbox" id="thoai-hoa-dot-song-co-health-condition" placeholder="Thoái hóa đốt sống cổ">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+    
+                        <div class="item">
+                            <label class="container">Đau dây thần kinh tọa
+                                <input type="checkbox" id="dau-day-than-kinh-toa-health-condition" placeholder="Đau dây thần kinh tọa">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+    
+                        <div class="item">
+                            <label class="container">Trầm cảm
+                                <input type="checkbox" id="tram-cam-health-condition" placeholder="Trầm cảm">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+    
+                        <div class="item">
+                            <label class="container">Rối loạn lo âu
+                                <input type="checkbox" id="roi-loan-lo-au-health-condition" placeholder="Rối loạn lo âu">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+        <!-- <footer>
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </footer> -->
+
+
+
+
+        <img src="{{ url_for('static', filename='assets/img/icons/loading-icon.gif') }}" id="loading-icon">
+
+
+        <script src="{{ url_for('static', filename='templates/common-script.js') }}"></script>
+        <script>
+            const updateHealthConditions = {{ update_health_conditions | lower }};
+            const redirectUrl = "{{ next }}";
+        </script>
+        <script src="{{ template_folder }}/script.js"></script>
+    </body>
+</html>

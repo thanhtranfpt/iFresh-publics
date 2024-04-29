@@ -1,0 +1,706 @@
+/* Include Thabit font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Thabit');
+
+:root {
+    --header-height: 10vh;
+    --footer-height: 10vh;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+/* Ẩn các nút tăng/giảm mặc định của input number */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+#layer-1 {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow-y: auto;
+}
+
+#layer-2 {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid green;
+}
+
+
+#header-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: var(--header-height);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    /* background-color: white; */
+    z-index: 9999999999;
+}
+
+#back-icon {
+    position: relative;
+    margin-left: 25px;
+    width: 10px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+/* #back-icon img {
+    width: 100%;
+} */
+
+#back-text {
+    position: relative;
+    margin-left: 15px;
+    display: flex;
+    color: #E96200;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#item-configs-container-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: var(--footer-height);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#item-configs-container {
+    position: relative;
+    margin-top: var(--header-height);
+    margin-bottom: calc(var(--footer-height)*0.25);
+    /* margin-left: 7.5%;
+    margin-right: 7.5%; */
+    width: 85%;
+    padding-top: 36px;
+    padding-bottom: 50px;
+    border-radius: 15px;
+    border: 3px solid #65C9A8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#item-configs-container > .item-img {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+}
+
+.item-img img {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+#food-item-bg {
+    opacity: 0.6;
+}
+
+#item-configs-container .item-name-container {
+    position: relative;
+    height: 54px;
+    width: 230px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#item-configs-container .item-name-container .more-info {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin-right: 9px;
+}
+
+.more-info img {
+    width: 100%;
+    height: 100%;
+}
+
+#item-configs-container .item-name-container .item-name {
+    position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: calc(100% - 30px - 9px - 5px - 5px - 39px);
+}
+
+.item-name input {
+    width: 100%;
+    font: inherit;
+    font-weight: 500;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+#item-configs-container .item-name-container .edit-icon {
+    position: relative;
+    width: 39px;
+    height: 39px;
+}
+
+.edit-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+#item-configs-container .item-amount-container {
+    position: relative;
+    margin-top: 20px;
+    width: 320px;
+    max-width: 87.5%;
+    height: 50px;
+    border: 2px solid #65C9A8;
+    border-radius: 31px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#item-configs-container .item-amount-container .increase-btn {
+    position: relative;
+    margin-left: 15px;
+    width: 25px;
+    height: 25px;
+}
+
+#item-configs-container .item-amount-container .amount {
+    position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 56px;
+    max-width: 17.5%;
+}
+
+.amount input {
+    width: 100%;
+    font: inherit;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+#item-configs-container .item-amount-container .unit {
+    position: relative;
+    margin-left: 18px;
+    width: 130px;
+    max-width: 40.7%;
+    margin-right: 20px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    background-color: #65C9A8;
+    border-radius: 12.5px;
+}
+
+#item-unit-selection {
+    margin-left: 10px;
+    width: 75%;
+    font: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    background-color: #65C9A8;
+    border-radius: inherit;
+    border: none;
+    outline: none;
+    text-align: center;
+
+    /* Hide the default dropdown arrow */
+    -webkit-appearance: none;
+    /* -moz-appearance: none;
+    appearance: none; */
+}
+
+#item-configs-container .expiry {
+    position: relative;
+    margin-top: 23px;
+    height: 42px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#item-configs-container .expiry .supporter {
+    position: relative;
+    width: 12.6vw;
+    max-width: 54px;
+}
+
+#item-configs-container .expiry .text-wrapper {
+    position: relative;
+    width: 180px;
+    height: 25px;
+    text-align: center;
+
+    font-weight: bold;
+    font-size: 16px;
+    color: #8C8C8C;
+}
+
+#calendar-icon {
+    position: relative;
+    width: 12.6vw;
+    height: 42px;
+    max-width: 54px;
+    display: flex;
+    align-items: center;
+}
+
+#calendar-icon svg {
+    position: absolute;
+}
+
+#expiry-date-input {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+#item-configs-container .preserve-container {
+    position: relative;
+    margin-top: 23px;
+    width: 90%;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#item-configs-container .preserve-container .text-wrapper {
+    position: absolute;
+    right: 0;
+    width: calc(100% - 35px);
+    height: 115px;
+    border: 2px solid #65C9A8;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#item-configs-container .preserve-container .text-wrapper .text {
+    position: relative;
+    margin-left: 50px;
+    margin-right: 40px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    overflow-y: auto;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+#item-configs-container .preserve-container .days-left {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#item-configs-container .preserve-container .days-left .num-days-left {
+    position: absolute;
+    width: 63px;
+    height: 63px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-family: 'Thabit', sans-serif;
+    font-weight: normal;
+}
+
+#item-configs-container .preserve-container .days-left .num-days-left div {
+    margin-top: -5px;
+}
+
+#item-configs-container .preserve-container .days-left .num-days-left div input {
+    width: 100%;
+    font: inherit;
+    border: none;
+    outline: none;
+    text-align: center;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    transform: translateY(2px);
+}
+
+#item-configs-container .preserve-container .days-left .icon {
+    position: absolute;
+}
+
+#item-configs-container .item-status {
+    position: relative;
+    margin-top: 35px;
+    width: 278px;
+    height: 31px;
+    border-radius: 30px;
+    background-color: rgba(101, 201, 168, 0.4); /* RGB values for #65C9A8 with 40% opacity */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.item-status .status {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 30px;
+
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+
+    cursor: pointer;
+}
+
+.item-status .selected {
+    background-color: #65C9A8;
+    color: white;
+}
+
+#add-to-fridge-btn {
+    position: relative;
+    margin-top: 40px;
+    width: 270px;
+    height: 50px;
+    background-color: #E96200;
+    border-radius: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+
+#layer-2 .more-info-container {
+    position: relative;
+    width: 91%;
+    height: 82%;
+    top: 9%;
+    left: 4.5%;
+    padding-bottom: 25px;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+#layer-2 .more-info-container .close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+}
+
+#layer-2 .more-info-container .item-brief-summary {
+    position: relative;
+    margin-left: 4%;
+    margin-top: 40px;
+    width: 92%;
+    height: 118px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#layer-2 .more-info-container .item-brief-summary .img {
+    position: relative;
+    margin-left: 3.5vw;
+    width: 118px;
+    height: 100px;
+    padding-left: 9px;
+    padding-right: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 202;
+}
+
+.img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+#layer-2 .more-info-container .item-brief-summary .text {
+    position: relative;
+    width: 100%;
+    margin-left: -25px;
+    margin-right: 3.5vw;
+    height: 64%;
+    overflow-y: auto;
+    background-color: #FFEAD7;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 201;
+
+    font-weight: 500;
+    font-size: 14px;
+}
+
+#layer-2 .more-info-container .item-brief-summary .text .wrapper {
+    position: relative;
+    margin-left: 27.5px;
+    margin-right: 27.5px;
+    margin-top: 12.5px;
+    margin-bottom: 12.5px;
+    overflow-y: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+#layer-2 .more-info-container > .details {
+    position: relative;
+    margin-left: 4%;
+    width: 92%;
+    /* height: 431px; */
+    border: 2px solid #65C9A8;
+    border-radius: 15px;
+
+    padding-top: 15px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#layer-2 .more-info-container > .details > .header {
+    position: relative;
+    width: 92%;
+    height: 31px;
+    background-color: rgba(101, 201, 168, 0.4);
+    /* opacity: 0.4; */
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#layer-2 .more-info-container > .details .header .tab {
+    position: relative;
+    height: 100%;
+    width: calc(100%/3);
+    text-align: center;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    font-weight: 500;
+    font-size: 16px;
+    color: black;
+}
+
+#layer-2 .more-info-container > .details .header .selected {
+    background-color: #65C9A8;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+}
+
+#layer-2 .more-info-container > .details .tab-contents {
+    position: relative;
+    width: 100%;
+}
+
+#du-tru-tab-contents, #thoi-han-tab-contents, #mua-tab-contents {
+    position: relative;
+    width: 100%;
+}
+
+#du-tru-tab-contents {
+    display: flex;
+    flex-direction: column;
+}
+
+#du-tru-tab-contents .icons {
+    position: relative;
+    width: 100%;
+    height: 176px;
+    display: flex;
+    flex-direction: row;
+}
+
+#du-tru-tab-contents .icons .icon {
+    position: relative;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#du-tru-tab-contents .icons .icon .bg {
+    position: absolute;
+    opacity: 0.25;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#du-tru-tab-contents .icons .icon .main {
+    position: absolute;
+    width: 80%;
+    height: auto;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+#du-tru-tab-contents > .header {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#du-tru-tab-contents > .header div {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+}
+
+#du-tru-tab-contents > .contents {
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+#du-tru-tab-contents > .contents > div {
+    position: relative;
+    width: 50%;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
+}
+
+#layer-2 .more-info-container .origin {
+    position: relative;
+    margin-left: 4%;
+    margin-top: 12px;
+    width: 92%;
+    background-color: #FFEAD7;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 25px;
+}
+
+#layer-2 .more-info-container .origin > .header {
+    position: relative;
+    margin-top: 12px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 28px;
+}
+
+#layer-2 .more-info-container .origin > .header > .icon {
+    position: relative;
+    width: 30px;
+    height: 100%;
+}
+
+#layer-2 .more-info-container .origin > .header > .icon img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+#layer-2 .more-info-container .origin > .header > .text {
+    position: relative;
+    margin-left: -1px;
+    width: 121px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+}
+
+#layer-2 .more-info-container .origin > .details {
+    position: relative;
+    margin-top: 15px;
+    margin-left: 25px;
+    margin-right: 25px;
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
+}

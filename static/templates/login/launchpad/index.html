@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>iFresh - Đăng nhập</title>
+        <link rel="icon" href="{{ url_for('static', filename='assets/img/logo/favicon.ico') }}" type="image/x-icon">
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='templates/common-styles.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ template_folder }}/styles.css" type="text/css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <!-- <header>
+            <h1>Your Website Header</h1>
+        </header> -->
+        <main>
+            <!-- <h2>Welcome to Your Website</h2> -->
+
+            <div id="main-container">
+                <div class="dan-chuyen">
+                    <img src="{{ url_for('static', filename='assets/img/icons/sugar-beet.png') }}">
+                    <div class="text">
+                        Trong một số nền văn hóa, người ta tin rằng nếu bạn mơ thấy một vườn củ cải thì bạn sẽ gặp may mắn trong công việc làm ăn tốt và có bạn bè.
+                    </div>
+                </div>
+                <div id="login">
+                    <div class="button iFresh" onclick="window.location.href = `/login/iFresh?next={{ next }}`">
+                        <div>
+                            <img src="{{ url_for('static', filename='assets/img/logo/logo-white.png') }}">
+                        </div>
+                        <div class="text">Sign in with iFresh account</div>
+                    </div>
+
+                    <div class="button google" onclick="window.location.href = `/login/google?next={{ next }}`">
+                        <img src="{{ url_for('static', filename='assets/img/icons/google-sign-in-transparent-height-50.png') }}">
+                    </div>
+
+                    <div class="button facebook" onclick="loginFacebook()">
+                        <img src="{{ url_for('static', filename='assets/img/icons/facebook-sign-in.png') }}">
+                    </div>
+                </div>
+                <div id="terms" onclick="openTerms()">Điều khoản dịch vụ</div>
+            </div>
+
+            <div id="logo">
+                <img src="{{ url_for('static', filename='assets/img/logo/brand-mark.png') }}">
+            </div>
+
+
+            <div id="layer-2" style="display: none;">
+                <div class="terms">
+                    <div class="close-btn" onclick="closeTerms()">
+                        <img src="{{ url_for('static', filename='assets/img/icons/close.JPG') }}">
+                    </div>
+                    <div class="header">ĐIỀU KHOẢN DỊCH VỤ</div>
+                    <div class="contents">
+                        <div class="wrapper">
+                            <span style="font-style: italic;">Có hiệu lực từ ngày 08 tháng 4 năm 2024</span>
+                            <br>
+                            <span>VUI LÒNG ĐỌC KỸ CÁC ĐIỀU KHOẢN VÀ ĐIỀU KIỆN NÀY TRƯỚC KHI SỬ DỤNG TRANG WEB HOẶC ỨNG DỤNG NÀY</span>
+                            <br>
+                            <span>Các điều khoản dịch vụ này (“Điều khoản dịch vụ”) (cùng với các tài liệu mà chúng đề cập đến) cho bạn biết các điều khoản mà theo đó bạn có thể sử dụng trang web (“Trang web”) hoặc ứng dụng di động (“Ứng dụng”) của iFresh. Việc sử dụng Trang web hoặc Ứng dụng bao gồm việc truy cập, duyệt hoặc đăng ký sử dụng Trang web hoặc Ứng dụng.</span>
+                            <br>
+                            <span>Trang web và Ứng dụng này được vận hành bởi chi nhánh đã đăng ký tại Việt Nam của iFresh Inc., một công ty được đăng ký tại Thành phố Hồ Chí Minh, Việt Nam ("chúng tôi", "của chúng tôi" hoặc "Cookpad ") và các chi nhánh của nó (là các đơn vị kiểm soát, chịu sự kiểm soát hoặc dưới sự kiểm soát chung của Cookpad).</span>
+                            <br>
+                            <span>Bằng cách sử dụng Trang web hoặc Ứng dụng của chúng tôi, bạn xác nhận rằng bạn chấp nhận và đồng ý tuân thủ các Điều khoản dịch vụ được nêu bên dưới. Nếu bạn không đồng ý với các Điều khoản dịch vụ này, bạn không được sử dụng Trang web hoặc Ứng dụng của chúng tôi. Chúng tôi khuyên bạn nên giữ một bản sao của Điều khoản dịch vụ này để tham khảo trong tương lai.</span>
+                            <br>
+                            <span style="font-weight: bold;">1. CHÍNH SÁCH BỔ SUNG</span>
+                            <br>
+                            <span>Các chính sách bổ sung sau đây cũng áp dụng cho việc bạn sử dụng Trang web hoặc Ứng dụng của chúng tôi:</span>
+                            <span style="font-style: italic;">Chính sách quyền riêng tư: </span>
+                            <span>Giải thích thông tin cá nhân chúng tôi thu thập, lý do thu thập, cách sử dụng thông tin, biện pháp kiểm soát của bạn và các quy trình bảo vệ quyền riêng tư. Áp dụng cho thông tin cá nhân thu thập thông qua Trang web và Ứng dụng. Vui lòng đảm bảo rằng bạn đã đọc kỹ Chính sách quyền riêng tư trước khi sử dụng.</span>
+                            <br>
+                            <span style="font-weight: bold;">2. SỬ DỤNG VÀ TRUY CẬP</span>
+                            <br>
+                            <span style="font-style: italic;">a. Tuổi tác:</span>
+                            <span>Bằng cách sử dụng Trang web hoặc Ứng dụng của chúng tôi, bạn xác nhận rằng bạn đủ tuổi để thực hiện hành động pháp lý để đồng ý với các Điều khoản dịch vụ này (tuổi ít nhất là 18 tuổi). Nếu bạn chưa đủ tuổi, bạn cần có sự cho phép của phụ huynh hoặc người giám hộ để sử dụng Trang web hoặc Ứng dụng.</span>
+                            <span style="font-style: italic;">b. Đăng ký tài khoản:</span>
+                            <span>Để sử dụng một số tính năng của Trang web hoặc Ứng dụng, bạn có thể cần đăng ký và tạo tài khoản. Bạn phải cung cấp thông tin chính xác, đầy đủ và cập nhật khi đăng ký tài khoản và duy trì thông tin này để luôn được cập nhật.</span>
+                            <span style="font-style: italic;">c. Truy cập và bảo mật:</span>
+                            <span>Chúng tôi có thể từ chối cung cấp cho bạn quyền truy cập vào Trang web hoặc Ứng dụng, hoặc bất kỳ phần nào của nó, bất kỳ lúc nào vì bất kỳ lý do nào, mà không cần thông báo trước. Bạn chịu trách nhiệm duy trì tính bảo mật của mật khẩu và tài khoản của mình. Chúng tôi không chịu trách nhiệm đối với bất kỳ hành vi hoặc hành động nào được thực hiện thông qua tài khoản của bạn.</span>
+                            <br>
+                            <span style="font-weight: bold;">3. QUYỀN SỞ HỮU INTELLECTUAL</span>
+                            <br>
+                            <span style="font-style: italic;">a. Sở hữu Trang web và Ứng dụng:</span>
+                            <span>Chúng tôi là chủ sở hữu toàn bộ quyền sở hữu Trang web và Ứng dụng, bao gồm tất cả các quyền sở hữu trí tuệ liên quan. Bằng cách sử dụng Trang web hoặc Ứng dụng của chúng tôi, bạn không được phép sao chép, sửa đổi, phân phối hoặc tái sử dụng bất kỳ phần nào của nó mà không có sự cho phép bằng văn bản từ chúng tôi.</span>
+                            <span style="font-style: italic;">b. Nội dung của người dùng:</span>
+                            <span>Bất kỳ nội dung nào được đăng tải hoặc chia sẻ bởi người dùng trên Trang web hoặc Ứng dụng vẫn là tài sản của người đăng. Tuy nhiên, bạn đồng ý cấp cho chúng tôi quyền và giấy phép không thể chuyển nhượng, không độc quyền, miễn phí, và có thể được phép sử dụng, sao chép, sửa đổi, phân phối, hiển thị và thực hiện nội dung đó liên quan đến việc vận hành và quảng bá Trang web hoặc Ứng dụng.</span>
+                            <br>
+                            <span style="font-weight: bold;">4. HỢP PHÁP VÀ CÁC ĐIỀU KHOẢN KHÁC</span>
+                            <br>
+                            <span style="font-style: italic;">a. Pháp luật áp dụng:</span>
+                            <span>Các Điều khoản dịch vụ này được điều chỉnh theo luật pháp của Việt Nam.</span>
+                            <span style="font-style: italic;">b. Thay đổi Điều khoản:</span>
+                            <span>Chúng tôi có quyền thay đổi hoặc sửa đổi các Điều khoản dịch vụ này vào bất kỳ lúc nào. Các thay đổi sẽ có hiệu lực ngay khi chúng được đăng lên Trang web hoặc Ứng dụng.</span>
+                            <span style="font-style: italic;">c. Giải quyết tranh chấp: </span>
+                            <span>Bất kỳ tranh chấp nào phát sinh từ hoặc liên quan đến việc sử dụng Trang web hoặc Ứng dụng sẽ được giải quyết theo quy trình giải quyết tranh chấp mà chúng tôi chọn, trong phạm vi pháp luật.</span>
+
+                            <!-- <br>
+                            <span style="font-weight: bold;">TÊN ĐIỀU KHOẢN</span>
+                            <br>
+                            <span style="font-style: italic;">a. Tên đề mục:</span>
+                            <span>Nội dung đề mục</span>
+                            <span style="font-style: italic;">b. Tên đề mục:</span>
+                            <span>Nội dung đề mục</span> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        
+
+
+
+        <img src="{{ url_for('static', filename='assets/img/icons/loading-icon.gif') }}" id="loading-icon">
+
+
+        <script src="{{ url_for('static', filename='templates/common-script.js') }}"></script>
+        <script></script>
+        <script src="{{ template_folder }}/script.js"></script>
+    </body>
+</html>

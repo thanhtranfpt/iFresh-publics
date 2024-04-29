@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>iFresh - Premium</title>
+        <link rel="icon" href="{{ url_for('static', filename='assets/img/logo/favicon.ico') }}" type="image/x-icon">
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='templates/common-styles.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ template_folder }}/styles.css" type="text/css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <!-- <header>
+            <h1>Your Website Header</h1>
+        </header> -->
+        <main>
+            <!-- <h2>Welcome to Your Website</h2> -->
+
+            <div id="back-container" onclick="window.location.href = '/'">
+                <div class="icon">
+                    <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16.7072L2 9.70715" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M2 9L12 2" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                        </svg>                        
+                </div>
+                <div class="text">Trang chủ</div>
+            </div>
+
+            <div id="header-container"></div>
+
+            <div id="body-container">
+                <div class="part">
+                    <div class="title">GÓI THÀNH VIÊN VÀ PHÍ</div>
+                    <div class="sub-title" style="cursor: pointer;">Premium (1 năm)</div>
+                    <div class="config-items">
+                        <div class="item" onclick="changePlan()">Thay đổi gói tài khoản</div>
+                        <div class="item" onclick="viewPlanInfo()">Thông tin gói dịch vụ</div>
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="payment-method">
+                        <div class="logo" style="cursor: pointer;">
+                            <img src="{{ url_for('static', filename='assets/img/icons') }}/{{ payment['method'] }}.png">
+                            <span>{{ payment['phone_number_displayed'] }}</span>
+                        </div>
+                        <div class="info">Ngày tính phí tiếp theo của bạn là {{ payment['next_bill_date'] }}</div>
+                    </div>
+                    <div class="config-items">
+                        <div class="item" onclick="changePaymentMethod()">Thay đổi phương thức thanh toán</div>
+                        <div class="item" onclick="addBackupPaymentMethod()">Thêm phương thức thanh toán dự phòng</div>
+                        <div class="item" onclick="viewPaymentInformation()">Thông tin thanh toán</div>
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="title">BẢO MẬT & QUYỀN RIÊNG TƯ</div>
+                    <div class="config-items">
+                        <div class="item" onclick="manageDevices()">Quản lý thiết bị</div>
+                        <div class="item" onclick="downloadPersonalInfo()">Tải xuống thông tin cá nhân</div>
+                        <div class="item" onclick="manageFamilyMembers()">Quản lý Thành viên gia đình</div>
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="config-items">
+                        <div class="item" onclick="advancedSettings()">Cài đặt nâng cao</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="nav-pages">
+                <div class="page" id="home-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/home-active.png') }}">
+                </div>
+                <div class="page" id="scan-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/scanner-active.png') }}">
+                </div>
+                <div class="page" id="menu-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/menu-active.png') }}">
+                </div>
+                <div class="page" id="explore-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/explore-active.png') }}">
+                </div>
+            </div>
+
+        </main>
+        <!-- <footer>
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </footer> -->
+
+
+
+
+        <img src="{{ url_for('static', filename='assets/img/icons/loading-icon.gif') }}" id="loading-icon">
+
+
+        <script src="{{ url_for('static', filename='templates/common-script.js') }}"></script>
+        <script src="{{ template_folder }}/script.js"></script>
+    </body>
+</html>

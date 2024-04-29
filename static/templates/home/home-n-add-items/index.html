@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>iFresh - Trang chủ</title>
+        <link rel="icon" href="{{ url_for('static', filename='assets/img/logo/favicon.ico') }}" type="image/x-icon">
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='templates/common-styles.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ template_folder }}/styles.css" type="text/css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <main>
+
+            <div id="header-container">
+                <div id="user-avatar">
+                    <img src="{{ user['avatar'] }}" style="cursor: pointer;">
+                </div>
+                <div id="welcome-text">
+                    Hi, {{ user['last_name'] }}
+                </div>
+                <div id="settings-icon">
+                    <img src="{{ url_for('static', filename='assets/img/icons/settings.png') }}" style="cursor: pointer;" onclick="window.open('/settings', 'blank')">
+                </div>
+            </div>
+
+            <div id="main-container">
+                <div id="fridge-container">
+                    <div id="fridge-header">
+                        <div id="your-fridge-text">Tủ lạnh của bạn
+                            <svg style="margin-left: 5px; " width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="7.24228" cy="7.24228" r="6.74228" stroke="#D5D5D5"/>
+                                <path d="M6.51963 9.5656V9.51482C6.52511 8.97605 6.57985 8.54729 6.68386 8.22854C6.78786 7.90979 6.93567 7.65168 7.12726 7.45423C7.31886 7.25677 7.54877 7.07483 7.817 6.9084C7.97849 6.80685 8.12355 6.68697 8.2522 6.54875C8.38084 6.40771 8.48211 6.24552 8.55601 6.06216C8.63265 5.87881 8.67097 5.67571 8.67097 5.45287C8.67097 5.17643 8.60801 4.93666 8.48211 4.73357C8.3562 4.53047 8.18787 4.37391 7.97712 4.2639C7.76637 4.15389 7.53235 4.09889 7.27506 4.09889C7.05062 4.09889 6.83439 4.14684 6.62638 4.24275C6.41836 4.33865 6.24456 4.48957 6.10497 4.69549C5.96538 4.9014 5.88463 5.17079 5.86274 5.50364H4.82812C4.85002 5.02411 4.97045 4.61368 5.18942 4.27237C5.41112 3.93105 5.70262 3.67012 6.06391 3.48959C6.42794 3.30906 6.83166 3.2188 7.27506 3.2188C7.75679 3.2188 8.17556 3.31752 8.53138 3.51498C8.88993 3.71244 9.16638 3.98323 9.36071 4.32737C9.55778 4.67151 9.65631 5.0636 9.65631 5.50364C9.65631 5.81393 9.60978 6.0946 9.51672 6.34565C9.4264 6.59671 9.29502 6.82096 9.12258 7.01842C8.95288 7.21587 8.74761 7.39076 8.50674 7.54308C8.26588 7.69823 8.07292 7.86183 7.92785 8.0339C7.78279 8.20315 7.67741 8.40484 7.61172 8.63897C7.54603 8.87309 7.51045 9.16504 7.50498 9.51482V9.5656H6.51963ZM7.04515 12.0705C6.84261 12.0705 6.6688 11.9957 6.52374 11.8462C6.37867 11.6967 6.30614 11.5176 6.30614 11.3089C6.30614 11.1001 6.37867 10.921 6.52374 10.7715C6.6688 10.622 6.84261 10.5472 7.04515 10.5472C7.24769 10.5472 7.4215 10.622 7.56656 10.7715C7.71163 10.921 7.78416 11.1001 7.78416 11.3089C7.78416 11.4471 7.74994 11.574 7.68152 11.6897C7.61583 11.8053 7.52687 11.8984 7.41465 11.9689C7.30517 12.0366 7.182 12.0705 7.04515 12.0705Z" fill="#C6C6C6"/>
+                            </svg>
+                        </div>
+                        <div id="num-items" style="cursor: pointer;">
+                            <div class="text">{{ fridge['num_items'] }} món</div>
+                            <div class="next-icon">
+                                <svg width="9" height="12" viewBox="0 0 9 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 2L7 5.98009" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                    <path d="M7 6.38216L2 10.3622" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                </svg>                                    
+                            </div>
+                        </div>
+                    </div>
+    
+                    <hr class="items-separated-line">
+    
+                    <div id="fridge-items">
+                        
+                        <!-- FOR EACH Items in Fridge -->
+
+                        {% for item_id, item in fridge['items'].items() %}
+    
+                        <div class="item-in-fridge-container" id="item-in-fridge-id-{{ item_id }}">
+    
+                            <div class="item-in-fridge">
+                                <div class="item-img">
+                                    <img src="{{ item['image'] }}">
+                                </div>
+                                <div class="item-text">
+                                    <div class="item-name one-of-items-in-fridge" id="item-name-id-{{ item_id }}">{{ item['name'] }}</div>
+                                    <div class="item-weight">{{ item['quantity']['amount'] }} - {{ item['quantity']['unit'] }}</div>
+                                </div>
+                                <div class="item-days-left">
+                                    <div class="days-left-img">
+                                        <img src="{{ url_for('static', filename='assets/img/process-circles') }}/{{ item['expiry']['left_percent_rounded'] }}.png">
+                                    </div>
+                                    <div class="days-left-text">
+                                        <span class="num-days-left">{{ item['expiry']['left'] }}</span>
+                                        <span class="unit-num-left">{{ item['expiry']['unit'] }}</span>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <hr class="items-separated-line">
+    
+                        </div>
+
+                        {% endfor %}
+
+                        <!-- END FOR EACH Items in Fridge. -->
+
+                    </div>
+
+                </div>
+
+                <div id="add-items-icon" onclick="openAddItems()">
+                    <img src="{{ url_for('static', filename='assets/img/icons/add-items.png') }}">
+                </div>
+
+                <div id="notifications-container">
+                    <div class="header">Thông báo</div>
+                    <div class="content">
+                        <div id="first-part">
+                            {% if combine['last_item'] %}
+                            Bạn vừa mới thêm <span class="item-name">{{ combine['last_item']['name'] }}</span> vào tủ lạnh của bạn! Hoan hô!!!
+                            {% else %}
+                            Bạn chưa thêm món nào vào Tủ lạnh.
+                            {% endif %}
+                        </div>
+                        <div id="second-part">
+                            <div class="wrapper">
+                                <img class="item-img" src="{{ url_for('static', filename='assets/img/food-items/pumpkin.png') }}">
+                                <svg class="is-suitable-icon" width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.15 13L19.5625 17.589L16.9125 20.345L12.5 15.756L8.07505 20.358L5.42505 17.602L9.85005 13L5.42505 8.398L8.07505 5.642L12.5 10.244L16.925 5.655L19.575 8.411L15.15 13Z" fill="#F24E1E"/>
+                                </svg>
+                                <img class="item-img" src="{{ url_for('static', filename='assets/img/food-items/bok-choy.png') }}">
+                            </div>
+                        </div>
+                        <!-- <div id="third-part">
+                            Nhưng hãy cảnh giác, món <span class="item-name"></span> và <span class="item-name"></span> được coi là hai loại thực phẩm bổ dưỡng, tốt cho sức khỏe con người, trên thực tế, việc kết hợp chúng lại với nhau là một điều cấm kỵ lớn.
+                        </div> -->
+                        <div id="third-part">
+                            {{ combine['message'] | safe }}
+                        </div>
+                    </div>
+                    <div class="dot-dot-dot-bubbles">
+                        <div class="bubble bubble-1"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                    </div>
+                    <div class="add-more" onclick="showMoreCombineAlerts()" style="cursor: pointer;">
+                        THÊM >>
+                    </div>
+                </div>
+
+                <div id="save-and-waste-container">
+                    <div class="header-container">
+                        <div class="header">Tiết kiệm và lãng phí</div>
+                        <div class="sub-header">TRUNG BÌNH</div>
+                        <div id="average-number">{{ save_n_waste['average_percent'] }}%</div>
+                        <div class="next-icon">
+                            <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.35352 1.64642L9.35352 8.64642" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M9.35352 9.35358L2.35352 16.3536" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                            </svg>                                
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="graph">
+                        <img src="{{ save_n_waste['chart'] }}">
+                    </div>
+                </div>
+            </div>
+
+            <div id="nav-pages">
+                <div class="page" id="home-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/home-active.png') }}">
+                </div>
+                <div class="page" id="scan-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/scanner-active.png') }}">
+                </div>
+                <div class="page" id="menu-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/menu-active.png') }}">
+                </div>
+                <div class="page" id="explore-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/explore-active.png') }}">
+                </div>
+            </div>
+
+            <div id="layer-2" style="display: none;">
+                <div id="search-container">
+                    <div class="close-btn" onclick="closeAddItems()">
+                        <img src="{{ url_for('static', filename='assets/img/icons/close.JPG') }}">
+                    </div>
+                    <div class="header">Thêm</div>
+                    <div id="search-bar">
+                        <div id="search-icon">
+                            <img src="{{ url_for('static', filename='assets/img/icons/search.png') }}">
+                        </div>
+                        <div class="text">
+                            <input type="text" placeholder="Tìm kiếm" onkeyup="searchItems()" id="search-input-add-item">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="items-container" id="search-results-items">
+                        <!-- <div class="item">
+                            <img src="{{ url_for('static', filename='assets/img/food-items/apple.png') }}">
+                            <div class="name">Táo</div>
+                        </div> -->
+                    </div>
+                    <hr>
+                    <div class="recent-items-container">
+                        <div class="header">Gần đây</div>
+                        <div class="contents">
+                            {% for item in recent_added_items %}
+                            <div>{{ item['name'] }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="layer-3">
+                <div class="notification-prompt">
+                    <div class="close-btn" onclick="closeNotificationPrompt()">
+                        <img src="{{ url_for('static', filename='assets/img/icons/close.JPG') }}">
+                    </div>
+
+                    <div class="header">
+                        Bạn muốn nhận thông báo và lời khuyên từ chúng tôi ?
+                    </div>
+                    <div class="speech-balloon">
+                        <img src="{{ url_for('static', filename='assets/img/icons/speech-balloon.png') }}">
+                        <div class="text">Bật thông báo để nhận các gợi ý hữu ích và tạo lời nhắc về độ tươi mới của sản phẩm</div>
+                    </div>
+                    <div class="phone-notification">
+                        <img src="{{ url_for('static', filename='assets/img/icons/phone-notification.png') }}">
+                    </div>
+
+                    <div class="action">
+                        <div class="button turn-on" onclick="turnOnNoti()">Bật thông báo</div>
+                        <div class="button later" onclick="closeNotificationPrompt()">Lần sau</div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+
+
+
+        <img src="{{ url_for('static', filename='assets/img/icons/loading-icon.gif') }}" id="loading-icon">
+
+
+        <script src="{{ url_for('static', filename='templates/common-script.js') }}"></script>
+        <script>
+            const askNotiPermit = {{ ask_noti_permit | lower }};
+            const openSearchTab = {{ open_search_tab | lower }};
+            const fridge = {{ fridge | tojson | safe }};
+            const combineData = {{ combine | tojson | safe }};
+            const databaseFoodItems = {{ database_food_items | tojson | safe }};
+        </script>
+        <script src="{{ template_folder }}/script.js"></script>
+    </body>
+</html>

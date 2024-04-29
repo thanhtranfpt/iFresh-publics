@@ -1,0 +1,95 @@
+#body-container {
+    position: relative;
+    height: calc(100vh - var(--footer-height));
+    margin-bottom: var(--footer-height);
+    background-color: rgba(217, 217, 217, 0.5);
+}
+
+#camera-frame {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 258px;
+    height: 258px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image-display {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+/* #video-frame {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: cover;
+} */
+
+#camera-frame > .corner {
+    width: 50px;
+    height: 50px;
+    border-width: 9px;
+    border-style: solid;
+    border-color: transparent;
+}
+
+#camera-frame > .top-left {
+    position: absolute;
+    left: -4px;
+    top: -4px;
+    border-top-color: #65C9A8;
+    border-left-color: #65C9A8;
+    z-index: 99999;
+}
+
+#camera-frame > .top-right {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    border-top-color: #65C9A8;
+    border-right-color: #65C9A8;
+    z-index: 99999;
+}
+
+#camera-frame > .bottom-left {
+    position: absolute;
+    bottom: -4px;
+    left: -4px;
+    border-bottom-color: #65C9A8;
+    border-left-color: #65C9A8;
+    z-index: 99999;
+}
+
+#camera-frame > .bottom-right {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    border-bottom-color: #65C9A8;
+    border-right-color: #65C9A8;
+    z-index: 99999;
+}
+
+#scanner-icon {
+    position: absolute;
+    top: calc(50% + (50% - 69px)/2);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 69px;
+    height: 69px;
+}
+
+#scanner-icon > img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+}

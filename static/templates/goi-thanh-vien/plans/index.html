@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>iFresh - Plans</title>
+        <link rel="icon" href="{{ url_for('static', filename='assets/img/logo/favicon.ico') }}" type="image/x-icon">
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='templates/common-styles.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ template_folder }}/styles.css" type="text/css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <!-- <header>
+            <h1>Your Website Header</h1>
+        </header> -->
+        <main>
+            <!-- <h2>Welcome to Your Website</h2> -->
+
+            <div id="back-container" onclick="history.back()">
+                <div class="icon">
+                    <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16.7072L2 9.70715" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M2 9L12 2" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                    </svg>                        
+                </div>
+                <div class="text">Thành viên</div>
+            </div>
+
+            <div id="header-container"></div>
+
+            <div id="body-container">
+                <div class="plan" onclick="choosePlan('free')">
+                    <div class="header" id="free-plan-header">Free</div>
+                    <div class="contents">
+                        Nhập và quản lý nguyên liệu trong tủ lạnh.
+                        <br><br>
+                        Đề xuất các món ăn có thể chế biến từ nguyên liệu có sẵn trong tủ lạnh hoặc Nhập nguyên liệu mong muốn.
+                    </div>
+                </div>
+                <div class="plan" onclick="choosePlan('premium')">
+                    <div class="tick-icon">
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <circle cx="17" cy="17" r="17" fill="#EEE7AC"/>
+                            <rect x="2.5" y="8.5" width="30.5" height="17.5" fill="url(#pattern0_99_71)"/>
+                            <defs>
+                            <pattern id="pattern0_99_71" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_99_71" transform="matrix(0.00198537 0 0 0.00346021 -0.00130467 0)"/>
+                            </pattern>
+                            <image id="image0_99_71" width="505" height="289" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfkAAAEhCAYAAAB829mmAAAACXBIWXMAAAsSAAALEgHS3X78AAARVklEQVR4nO3dzXUcx9UG4JaP91IG5LfotZoREI5AcAJDIAJBEYiMwGQEAjoBgxEIikCD9Sw+MgMiAvqUVKIAYgbTM/1XVf085/B4ZXu6B8TLW3Xr1jefP3+uAIDy/MN3CgBlEvIAUCghDwCFEvIAUCghDwCFEvIAUCghDwCFEvIAUCghDwCFEvIAUCghDwCFEvIAUCghDwCFEvIAUCghDwCFEvIAUCghDwCFEvIAUCghDwCFEvIAUCghDwCFEvIAUCghDwCFEvIAUCghDwCFEvIAUKh/+mIBlq1p6+/Cf+x6CevV5mbp7yhX33z+/Hnp7wBgUZq2fl5V1WlVVSfxz7cdnv825H1VVSHwr9erzSc/NekT8gAL0bT1WVVV4c/LAZ74qqqqS1V+2oQ8QOFiuL+uqurZCE/6W/jfFvZpEvIAhWraOuyzX1ZV9f0ET/g+rBJYxk+LkAcoTGykC5X7jxM/2V3Y61fVp8MROoCCNG19Ehvkpg74Kjbw/dq09YWfqTSo5AEKMGP1vsvVerU587M1LyEPkLmmrcNxuLcjNdb1IehnJuQBMhWr99BY90PCT3C+Xm0uE/gciyTkATIUq/fLjoNs5vZivdqs/ZxNT8gDZCST6v1rH8NHd7xuerrrATIRq/cPmQV8FXsFXifwORZHJQ+QuEyr923+b73afEjvY5VLJQ+QsIyr921U8xNTyQMkqKDq/Wuq+Qmp5AESU1j1/jXT8Cb0z8U8KUDiCq7e7zsV9NNRyQMkoPDq/b5n8XY8JqCSB5jRQqr3r53GS3QYmZAHmEm8Me46k6l1Q1LJT0TIA0wswRvjpibkJyLkASYUq/fLBG+Mm9KSn31SGu8AJtK0dajefxVyX1YzGJlKHmBksZs8VO/fe9dfhHdyk8hnKZZKHmBETVuHM+G/C3jmoJIHGEHT1s9j9f7S+2UuZtcDDCwOtrlc4NG4ztarzTeZfNSsqeQBBrLQwTYkzJ48wADi0bi1gO/kYwafsQhCHqCnpq3fOhp3ECNtJ2K5HuBIjsYdzdG5iajkAY4Qj8bdCPijCPmJ6K4HOIDmut4+rleb55k/QzYs1wN0tOBb44Z0Wc6jpM9yPUAH95rrBHw/Qn5CKnmAJ2iuG9TVerX5UNDzJE8lD7BD09ZnmusG9bqgZ8mCSh7gK5rrRvFGFT89IQ9wT1yevzbYZlC3VVW9Leh5smG5HiBq2vp1vBZWwA/nrqqqs/Vq86mUB8qJSh5YvLg8f+1a2FFcrFcbY2xnopIHFi2eff8g4Edxvl5tHJmbkZAHFisuzzv7Pg4BnwDL9cDiNG39PHbPq97HIeATIeSBRWna+jQGvOp9eOGe+FN78OmwXA8sRhxN+18BP4p34RUL+LSo5IHixeX5a5PrRnEbj8gJ9wQJeaBoludHFabYGVWbMCEPFCsuz//oGx6c6j0TQh4ojuE2ownT616vVxsjajMh5IGixOE215bnB/dbrN5dMpMRIQ8UIw63+dk3OijVe8aEPJA9y/OjUb1nTsgDWXM17ChU74UwDAfIVtPWF66GHdxvcaiNgC+ASh7ITlyeDyH0yrc3GNV7gYQ8kJW4PH9pet2g7L0XSsgD2TC9bnCq98IJeSALptcNTvW+AEIeSJrjcaP4SfW+DEIeSFbcf7+xPD8YM+cXRsgDSWra+qyqql98O4NxY9wCCXkgOU1bXzoeNxjV+4IJeSAZcf/9xvG4wbyL3fOfCnkeDiTkgSTYfx/Ux1i93xT0TBzBWFtgdnH//XcBP4j3cSytgEclD8zL/vtg7mL1fl3I8zAAIQ/Mwv77oAy2YSshD0zO/vugDLZhJ3vywKTsvw8mHI17IeB5ipAHJhP33w246S8cjTtx9p19LNcDozN/fjChue5U5zxdqeSBUcX997WA7y0cjXsu4DmESh4YjfvfB6O5jqOo5IFRNG0dLkP5r4DvRXMdvajkgUHF/fe3Btz0Zu48vQl5YDAG3AzC5DoGI+SBQRhwM4jfYve86p1BCHmgtzjg5q2A7+XNerV5nfHnJ0FCHuglNtj97C0ezbWwjEbIA0fRYDeI9zHgLc8zCiEPHEyD3SCcfWd0Qh44SGywC53fz7y5o3yMzXXmzjM6w3CAzuIEuxsBf7SwPN8IeKaikgc6iR30bpA7nuV5Jifkgb3iFbEa7I5jeZ7ZCHlgp9hgFwL+B2/pKLrnmZWQB7bSQd+b5XlmJ+SBR4yo7cXyPMnQXQ880LT1iYA/mu55kqKSB77QQd+L5XmSI+RnFvc9T+KfsET6fMcZ5HD9ZKgOPsQq62a92nxY1MtiVE1bh4D60Vs+2F1cnjd7nuR88/nzZ9/KDGLFdNqza/k2dj5fC3z6cETuaK6GJWlCfkKxar+If4be77yqquq1sOcQOuh7ebdebS4y/vwsgJCfyIT3bb8J/z8qC/YR8Ee7i2ffrzP9/CyIkB9Z/EUafhm8nPD/1hEenuSI3NFu498tK2ZkwRG6EcVfpB8mDvgqNu79HlcP4AFH5I4WtsROBDw5UcmPZMLl+X3sG/KFI3JHczyOLAn5EST4i9T8bMLPZfjH3n+8iYPcxerd1hdZEvIDS3iv8zb+shL0C+SI3FH8nSF7Qn5AscnuQ8J7naqSBRLwR7HNRRE03g3rOvFmpvDZbmLjFYUL/+hs2not4A8S/iF8LuAphZAfSNzvnLqL/hgh6H/VeV82Z+CP8jGudF1m+NlhK8v1A8hgmX6XN+vV5nWaH41jxb6Q6x13ILCd8bQUSSU/jDHG1E7h57hfSyHuNX4K+O7C/rsGO4qkku8p4yr+vjDk48IvubyZYnewu/hz7x+6FEsl399ZAb9UX8WGvO8S+CwcIfZY/C7gO7P/ziII+f5KaWD7XtDnyRS7g4Xz742jpCyB5foemrZ+XlXV/2f7ANs5S58RU+wOdrVebZwsYTFU8v2c5vzhd/jrLH2T5Kfji9g0KeC7OxfwLI2Q76fUIBT0iTPF7iBhdepf9t9ZIiHfT8kh+K3ratMk4A/y1/77TUafGQZjT76Hpq2X8vLOVUHzM8XuYG5fZPFU8nTxi4p+XgL+YGHAjQl2LJ6QP9ICL3kJQW8E7gwE/MFcMAORkOcQxuBOLB7TFPDdhAa7F7aW4G9CnkO9EvTTiKcb1gK+EwNuYAshf7wPuX7wAQj6kZlDf5D3cYDTkv9Owla663tYUHf9LqaHjUDAH+Sd/XfYTSXfz13OH34AKvqBCfiDaLCDPYR8P/b//gz6tYtt+hPwnZlgBx0J+X5M0fqTG+x6clVsZ7dx/93fPehAyPfjF83fBP2RXBXb2a0bEuEwGu96atr6k+rrgb9+EZs01oGA70yTJxxBJd/fde4PMDAVfUcCvrM3Ah6OI+T70/zzmKDfQ8B3FjrojVOGI1muH0DT1mFv/mX2DzI8S/dbCPhO7uy/Q38q+WGoNLZT0X9FwHfyUcDDMFTyA1HNP0lFL+C78rMCA1LJD+fMBLydFl/RC/hO3gt4GJZKfkB+ke+1yCrNz0UnjsjBCFTyA4pjNq+KeaDhfb+0I4cCvpOfBDyMQyU/Avvzey2iahPwnZybQQ/jUcmP4zQuTbNd8bfXCfi9Qv/KCwEP41LJjygG2atiH7C/Iit6Ab+XM/AwEZX8iGKAvSn2AfsrrqIX8HuFFa5GwMM0VPIT8It/ryIqet/zXs7Aw8RU8hOI+44vnKPfKVT0F4l+tk4E/F5XAh6mp5KfUNPWTTxC9mwxD32YLDutBfxezsDDTFTyE4r7kI3O+51+iYGZDQG/l2tiYUZCfmJxufIkjvDksWyCXsDv5ZpYmJnl+hk5YrdT8kesBPxehtxAAoT8zJq2fltV1Y+LfgnbJRv0Av5JzsBDQoR8AoTGTskFRtPWYavl1wQ+SooEPCTGnnwC4rLm+dLfwxbfVlV1mcoVtfdOR/CYgIcEqeQTEqvE6xhu/G32ISox4G98N1sZcgOJUsknZL3a3MTOe0NzHpr1iloB/yQBDwkT8omJy52C/rGXc8y5F/BPEvCQOCGfIENzdnoVTyNMomnr5wJ+J2NqIQP25BMWG85u4nI1fxv9DLZ3/yRjaiETQj5xwmanf69Xm1H26b3zJwl4yIiQz4DQ2WqUI1ve9ZMEPGTGnnwG7s27v1r6u7gn7JPfxH3zIV0L+K3OBTzkRyWfGfPuHxmsw9u73ckcesiUSj4zsZpS0f9tkDP0An4nAQ8ZE/IZEvSP9DpDH4/lCfjHBDxkTshnStA/Es7QXxz6X4qXA7kF8DEBDwWwJ585y8yPdD5a5/a/rcKphdM4YhnInJAvgKB/oNPROlfGbuUmOSiMkC+EoH/gY3gluzruzaPfSsBDgezJF8Ie/QPPdnXcC/itBDwUSsgXRNA/8KjjPk6zc1//QwIeCibkCyPoH3gVm+vuj6t9ls7Hm52Ah8LZky+UPfoHXlRVFc7Cv0zoM81NwMMCCPmCCXp2EPCwEJbrC2bpni0EPCyIkC+coOceAQ8LI+QXQNAj4GGZhPxCCPpFE/CwUEJ+QQT9Igl4WDDd9QvUtPU63sNO2QQ8LJxKfpnC5Sy3S38JhRPwgJBfonhxi6Avl4AH/iDkF0rQF0vAA1/Yk1+4pq2fh8x3aUsRBDzwgEp+4darzYdY0d8t/V1kTsADjwh5qhgMgj5fAh7YSsjzhxgQZ95GdgQ8sJOQ54v1anNdVdW5N5KVCwEP7CLkeWC92lwK+mycx+8LYCshzyMxOIy/TZuAB/YS8mxlzn3SBDzQiXPyPMmc++QIeKAzlTz7mIqXjncCHjiESp69TMVLwlXcQgHoTCXPXqbizU7AA0cR8nQSz2JfeFuTE/DA0SzXc5CmrUPQ/8dbm8TterVpFvCcwEhU8hxkvdq8dbRuErdxiwTgaCp5juJo3ahu4zz6TwU/IzABlTzHClXmR29vcHcCHhiKkOcoMYROddwPSsADgxLyHM31tINyZSwwOCFPL/F62jfeYm9nAh4YmsY7BtG0dRi3+srbPIp59MAoVPIM5cKM+6P8JOCBsajkGYwZ9wczzQ4YlUqewcQZ90KrGwEPjE7IMyiNeJ3cugcAmILlekbRtHUI+x+83UdMswMmo5JnLGcm4j1yF4/KCXhgEkKeUdybiMefDLsBJifkGU0MtJ+84T9cCHhgavbkGZ39ecNugHmo5JnCkvfnrwQ8MBeVPJNo2rqpqur3hb3t9+vVRl8CMBuVPJOI+9FLOj9/azAQMDeVPJNq2vqmqqqXhb/10EnfxAmAALNRyTO10xiCJTsR8EAKhDyTiufnS17GPndUDkiFkGdycb79VYFv/p1OeiAlQp65XBR2rC500rt0BkiKkGcWhS3b66QHkiTkmc16tQmd9u8y/wZCE+GpS2eAFAl55vY682X7U530QKqEPLPKfNn+p7gaAZAkIc/sMl22DzPp3ybwOQB2EvKkIqdl+9t4OgAgaUKeJMRl+xyCMzTanWm0A3Ig5ElGHJKT+rL9mYl2QC5cUENymrYOIfp9gh/tnYE3QE5U8qToJO57p+RKwAO5EfIkJ+53pxT0IeBNtAOyI+RJUkJBL+CBbNmTJ3lNW4fz6D9O/DlDF/2FW+WAnKnkSV7cC//3hOfofwurCAIeyJ1Knmw0bf1dPEsf/nw7wucO/4h4LdyBUgh5snMv7MNe+bMBPn/Y938r3IHSCHmy1rR1E8P+5MCz9WFJPgzfuXaLHFAqIU9RmrY+ic9z8tVzhW79MGTnk4l1wFIIeQAolO56ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAQgl5ACiUkAeAElVV9T9CzBG2XH1X3gAAAABJRU5ErkJggg=="/>
+                            </defs>
+                            </svg>                            
+                    </div>
+                    <div class="header" id="premium-plan-header">Premium (1 năm)</div>
+                    <div class="contents">
+                        <span style="font-weight: bold;">(NoAds) </span>Trải nghiệm ứng dụng không có quảng cáo
+                        <br>
+                        <span style="font-weight: bold;">(Danh sách) </span>Tự động tạo danh sách nguyên liệu còn thiếu của các món ăn ở phần gợi ý
+                        <br>
+                        <span style="font-weight: bold;">(Cảnh báo kết hợp) </span>Được thông báo không nên kết hợp các thành phần
+                        <br>
+                        <span style="font-weight: bold;">(Công cụ lập kế hoạch hàng ngày) </span>Sắp xếp bữa ăn dựa trên gợi ý thực phẩm
+                        <br>
+                        <span style="font-weight: bold;">(Storage Plus) </span>Tăng dung lượng lưu trữ dữ liệu vật liệu
+                        <br>
+                    </div>
+                </div>
+                <div class="others">
+                    <div class="button selected" onclick="history.back()">Trở về</div>
+                    <div class="button" onclick="goNext()">Tiếp</div>
+                </div>
+            </div>
+
+            <div id="nav-pages">
+                <div class="page" id="home-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/home-active.png') }}">
+                </div>
+                <div class="page" id="scan-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/scanner-active.png') }}">
+                </div>
+                <div class="page" id="menu-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/menu-active.png') }}">
+                </div>
+                <div class="page" id="explore-page">
+                    <img src="{{ url_for('static', filename='assets/img/icons/page-icons/explore-active.png') }}">
+                </div>
+            </div>
+
+        </main>
+        <!-- <footer>
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </footer> -->
+
+
+
+
+        <img src="{{ url_for('static', filename='assets/img/icons/loading-icon.gif') }}" id="loading-icon">
+
+
+        <script src="{{ url_for('static', filename='templates/common-script.js') }}"></script>
+        <script>
+            const userPlan = "{{ user_plan }}";
+            var selectedPlan = userPlan;
+        </script>
+        <script src="{{ template_folder }}/script.js"></script>
+    </body>
+</html>
